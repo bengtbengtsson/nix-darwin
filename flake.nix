@@ -40,10 +40,11 @@
           "mas"
         ];
         casks = [
-#          "brave-browser"
+          "brave-browser"
 #          "discord"
-#          "the-unarchiver"
+          "the-unarchiver"
         ];
+        onActivation.cleanup = "zap";
         taps = [
         ];
         masApps = {
