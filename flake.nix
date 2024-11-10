@@ -45,6 +45,8 @@
           "the-unarchiver"
         ];
         onActivation.cleanup = "zap";
+        onActivation.autoUpdate = true;
+        onActivation.upgrade = true;
         taps = [
         ];
         masApps = {
@@ -71,6 +73,16 @@
             ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
           done
         '';
+
+      system.defaults = {
+        dock.autohide = true;
+        dock.persistent-apps = [];
+        finder.FXPreferredViewStyle = "clmv";
+        loginwindow.GuestEnabled = false;
+        NSGlobalDomain.AppleICUForce24HourTime = true;
+        NSGlobalDomain.AppleInterfaceStyle = "Dark";
+        
+      };
 
       # Auto upgrade nix package and the daemon service.
       services.nix-daemon.enable = true;
