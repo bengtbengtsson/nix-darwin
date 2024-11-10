@@ -20,14 +20,35 @@
         [ 
           pkgs.alacritty
 	  pkgs.git
+          pkgs.gnupg
           pkgs.google-chrome
           pkgs.mkalias
+          pkgs.neovim
+          pkgs.obsidian
+          pkgs.ripgrep
           pkgs.tmux
         ];
 
       fonts.packages = [
         (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
       ];
+
+      homebrew = {
+        enable = true;
+        brews = [
+          "mas"
+        ];
+        casks = [
+          "brave-browser"
+          "discord"
+          "the-unarchiver"
+        ];
+        taps = [
+        ];
+        masApps = {
+          #Yoink = 457622435;
+        };
+      };
 
       system.activationScripts.applications.text = let
         env = pkgs.buildEnv {
