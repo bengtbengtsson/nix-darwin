@@ -41,8 +41,9 @@
         ];
         casks = [
           "brave-browser"
-#          "discord"
+#         "discord"
           "the-unarchiver"
+          "vlc"
         ];
         onActivation.cleanup = "zap";
         onActivation.autoUpdate = true;
