@@ -82,7 +82,9 @@
         loginwindow.GuestEnabled = false;
         NSGlobalDomain.AppleICUForce24HourTime = true;
         NSGlobalDomain.AppleInterfaceStyle = "Dark";
-        
+        trackpad.Clicking = true;
+        trackpad.FirstClickThreshold = 0;
+        trackpad.TrackpadRightClick = true;
       };
 
       # Auto upgrade nix package and the daemon service.
