@@ -20,14 +20,20 @@
       environment.systemPackages =
         [ 
           pkgs.alacritty
+          pkgs.docker
 	  pkgs.git
           pkgs.gnupg
           pkgs.google-chrome
+          pkgs.nodejs_20
           pkgs.mkalias
           pkgs.neovim
           pkgs.obsidian
+          pkgs.postman
           pkgs.ripgrep
+          pkgs.teams
           pkgs.tmux
+          pkgs.watchman
+          pkgs.zoom-us
         ];
 
       fonts.packages = [
@@ -77,7 +83,12 @@
 
       system.defaults = {
         dock.autohide = true;
-        dock.persistent-apps = [];
+        dock.persistent-apps = [
+          "${pkgs.alacritty}/Applications/Alacritty.app"
+          "${pkgs.obsidian}/Applications/Obsidian.app"
+          "${pkgs.google-chrome}/Applications/Google Chrome.app"
+          "/System/Applications/Utilities/Terminal.app"
+	];
         finder.FXPreferredViewStyle = "clmv";
         loginwindow.GuestEnabled = false;
         NSGlobalDomain.AppleICUForce24HourTime = true;
@@ -86,6 +97,7 @@
         trackpad.FirstClickThreshold = 0;
         trackpad.TrackpadRightClick = true;
       };
+
 
       # Auto upgrade nix package and the daemon service.
       services.nix-daemon.enable = true;
