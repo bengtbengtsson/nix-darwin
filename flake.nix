@@ -20,19 +20,24 @@
       environment.systemPackages =
         [ 
           pkgs.alacritty
+          pkgs.cmatrix
           pkgs.docker
 	  pkgs.git
           pkgs.gnupg
           pkgs.google-chrome
+          pkgs.htop
           pkgs.nodejs_20
           pkgs.mkalias
+          pkgs.neofetch
           pkgs.neovim
           pkgs.obsidian
           pkgs.postman
           pkgs.ripgrep
           pkgs.teams
           pkgs.tmux
+          pkgs.tree
           pkgs.watchman
+          pkgs.wget
           pkgs.zoom-us
         ];
 
@@ -142,3 +147,6 @@
     darwinPackages = self.darwinConfigurations."MBAM2".pkgs;
   };
 }
+
+# Notes
+# brew tap mongodb/brew; brew update; brew install mongodb-community@5.0 mongosh; brew services start mongodb-community@5.0
