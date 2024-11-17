@@ -29,7 +29,6 @@
           pkgs.nodejs_20
           pkgs.mkalias
           pkgs.neofetch
-          pkgs.neovim
           pkgs.obsidian
           pkgs.postman
           pkgs.ripgrep
@@ -47,8 +46,14 @@
 
       homebrew = {
         enable = true;
+        taps = [
+          "mongodb/brew"
+        ];
         brews = [
           "mas"
+          "mongodb-community@6.0"
+          "mongodb-database-tools"
+          "mongosh"
         ];
         casks = [
           "brave-browser"
@@ -59,8 +64,6 @@
         onActivation.cleanup = "zap";
         onActivation.autoUpdate = true;
         onActivation.upgrade = true;
-        taps = [
-        ];
         masApps = {
           Utm = 1538878817;
         };
