@@ -143,6 +143,11 @@
       home.sessionVariables = {
         EDITOR = "vim";
       };
+      programs.git = {
+        enable = true;
+        userName = "Bengt Bengtsson";
+        userEmail = "bengt.bengtsson@gmail.com";
+      };
     };
       in
       {
@@ -175,5 +180,5 @@
   };
 }
 
-# Notes
+# Notes, not so important
 # Install Rosetta manually
