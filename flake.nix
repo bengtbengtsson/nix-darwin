@@ -6,19 +6,19 @@
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
- home-manager = {
-            url = "github:nix-community/home-manager";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager }:
   let
     configuration = { pkgs, config, ... }: {
-      
+
       nixpkgs.config.allowUnfree = true;
-      
+
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages =
@@ -26,7 +26,7 @@
           pkgs.alacritty
           pkgs.cmatrix
           pkgs.docker
-	  pkgs.git
+          pkgs.git
           pkgs.gnupg
           pkgs.google-chrome
           pkgs.htop
@@ -44,42 +44,41 @@
           pkgs.zoom-us
         ];
 
-      fonts.packages = [
-        (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-      ];
+        fonts.packages = [
+          (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+        ];
 
-      homebrew = {
-        enable = true;
-        taps = [
-          "mongodb/brew"
-        ];
-        brews = [
-          "mas"
-          "mongodb-community@6.0"
-          "mongodb-database-tools"
-          "mongosh"
-        ];
-        casks = [
-          "brave-browser"
-#         "discord"
-          "the-unarchiver"
-          "vlc"
-        ];
-        onActivation.cleanup = "zap";
-        onActivation.autoUpdate = true;
-        onActivation.upgrade = true;
-        masApps = {
-          Utm = 1538878817;
+        homebrew = {
+          enable = true;
+          taps = [
+            "mongodb/brew"
+          ];
+          brews = [
+            "mas"
+            "mongodb-community@6.0"
+            "mongodb-database-tools"
+            "mongosh"
+          ];
+          casks = [
+            "brave-browser"
+            "the-unarchiver"
+            "vlc"
+          ];
+          onActivation.cleanup = "zap";
+          onActivation.autoUpdate = true;
+          onActivation.upgrade = true;
+          masApps = {
+            Utm = 1538878817;
+          };
         };
-      };
 
-      system.activationScripts.applications.text = let
-        env = pkgs.buildEnv {
-          name = "system-applications";
-          paths = config.environment.systemPackages;
-          pathsToLink = "/Applications";
-        };
-      in
+        system.activationScripts.applications.text = let
+          env = pkgs.buildEnv {
+            name = "system-applications";
+            paths = config.environment.systemPackages;
+            pathsToLink = "/Applications";
+          };
+        in
         pkgs.lib.mkForce ''
           # Set up applications.
           echo "setting up /Applications..." >&2
@@ -93,22 +92,22 @@
           done
         '';
 
-      system.defaults = {
-        dock.autohide = true;
-        dock.persistent-apps = [
-          "${pkgs.alacritty}/Applications/Alacritty.app"
-          "${pkgs.obsidian}/Applications/Obsidian.app"
-          "${pkgs.google-chrome}/Applications/Google Chrome.app"
-          "/System/Applications/Utilities/Terminal.app"
-	];
-        finder.FXPreferredViewStyle = "clmv";
-        loginwindow.GuestEnabled = false;
-        NSGlobalDomain.AppleICUForce24HourTime = true;
-        NSGlobalDomain.AppleInterfaceStyle = "Dark";
-        trackpad.Clicking = true;
-        trackpad.FirstClickThreshold = 0;
-        trackpad.TrackpadRightClick = true;
-      };
+        system.defaults = {
+          dock.autohide = true;
+          dock.persistent-apps = [
+            "${pkgs.alacritty}/Applications/Alacritty.app"
+            "${pkgs.obsidian}/Applications/Obsidian.app"
+            "${pkgs.google-chrome}/Applications/Google Chrome.app"
+            "/System/Applications/Utilities/Terminal.app"
+          ];
+          finder.FXPreferredViewStyle = "clmv";
+          loginwindow.GuestEnabled = false;
+          NSGlobalDomain.AppleICUForce24HourTime = true;
+          NSGlobalDomain.AppleInterfaceStyle = "Dark";
+          trackpad.Clicking = true;
+          trackpad.FirstClickThreshold = 0;
+          trackpad.TrackpadRightClick = true;
+        };
 
 
       # Auto upgrade nix package and the daemon service.
@@ -131,43 +130,43 @@
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
     };
-homeconfig = {pkgs, ...}: {
-            # this is internal compatibility configuration 
-            # for home-manager, don't change this!
-            home.stateVersion = "23.05";
-            # Let home-manager install and manage itself.
-            programs.home-manager.enable = true;
+    homeconfig = {pkgs, ...}: {
+      # this is internal compatibility configuration 
+      # for home-manager, don't change this!
+      home.stateVersion = "23.05";
+      # Let home-manager install and manage itself.
+      programs.home-manager.enable = true;
 
-            home.packages = with pkgs; [];
-    #        home.homeDirectory = "/Users/ben";
+      home.packages = with pkgs; [];
+      #home.homeDirectory = "/Users/ben";
 
-            home.sessionVariables = {
-                EDITOR = "vim";
-            };
-        };
-  in
-  {
+      home.sessionVariables = {
+        EDITOR = "vim";
+      };
+    };
+      in
+      {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#simple
     darwinConfigurations."MBAM2" = nix-darwin.lib.darwinSystem {
       modules = [ 
-	configuration
-	nix-homebrew.darwinModules.nix-homebrew
+        configuration
+        nix-homebrew.darwinModules.nix-homebrew
         {
           nix-homebrew = {
             enable = true;
             enableRosetta = true;
             user = "ben";
-            
+
           };
         }
-home-manager.darwinModules.home-manager  {
-                users.users.ben.home = "/Users/ben";
-                home-manager.useGlobalPkgs = true;
-                home-manager.useUserPackages = true;
-                home-manager.verbose = true;
-                home-manager.users.ben = homeconfig;
-            }
+        home-manager.darwinModules.home-manager  {
+          users.users.ben.home = "/Users/ben";
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.verbose = true;
+          home-manager.users.ben = homeconfig;
+        }
       ];
     };
 
@@ -177,4 +176,4 @@ home-manager.darwinModules.home-manager  {
 }
 
 # Notes
-# brew tap mongodb/brew; brew update; brew install mongodb-community@5.0 mongosh; brew services start mongodb-community@5.0
+# Install Rosetta manually
