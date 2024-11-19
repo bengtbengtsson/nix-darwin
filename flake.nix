@@ -157,7 +157,7 @@
             enable = true;
             enableRosetta = true;
             user = "ben";
-
+            autoMigrate = true;
           };
         }
         home-manager.darwinModules.home-manager  {
