@@ -30,13 +30,17 @@
           pkgs.gnupg
           pkgs.google-chrome
           pkgs.htop
-          pkgs.nodejs_20
+     #     pkgs.nodejs_20
           pkgs.mkalias
+#          pkgs.mongodb-6_0
+#          pkgs.mongosh
           pkgs.neofetch
           pkgs.obsidian
           pkgs.postman
+ #         pkgs.python312
           pkgs.ripgrep
           pkgs.teams
+          pkgs.thonny
           pkgs.tmux
           pkgs.tree
           pkgs.watchman
@@ -55,9 +59,9 @@
           ];
           brews = [
             "mas"
-            "mongodb-community@6.0"
-            "mongodb-database-tools"
-            "mongosh"
+            #"mongodb-community@6.0"
+            #"mongodb-database-tools"
+            #"mongosh"
           ];
           casks = [
             "brave-browser"
@@ -127,6 +131,9 @@
       # $ darwin-rebuild changelog
       system.stateVersion = 5;
 
+      # allow fingerprint in terminal
+      security.pam.enableSudoTouchIdAuth = true;
+
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
     };
@@ -138,15 +145,21 @@
       programs.home-manager.enable = true;
 
       home.packages = with pkgs; [];
-      #home.homeDirectory = "/Users/ben";
 
       home.sessionVariables = {
         EDITOR = "vim";
       };
+
       programs.git = {
         enable = true;
         userName = "Bengt Bengtsson";
         userEmail = "bengt.bengtsson@gmail.com";
+        aliases = {
+          st = "status";
+          co = "checkout";
+          br = "branch";
+          ci = "commit";
+        };
       };
     };
       in
