@@ -26,6 +26,7 @@
           pkgs.alacritty
           pkgs.cmatrix
           pkgs.docker
+          pkgs.fossil
           pkgs.git
           pkgs.gnupg
           pkgs.google-chrome
