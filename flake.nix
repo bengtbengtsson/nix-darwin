@@ -32,13 +32,10 @@
           pkgs.google-chrome
           pkgs.htop
           pkgs.logisim-evolution
-     #     pkgs.nodejs_20
           pkgs.mkalias
-#          pkgs.mongosh
           pkgs.neofetch
           pkgs.obsidian
           pkgs.postman
- #         pkgs.python312
           pkgs.ripgrep
           pkgs.teams
           pkgs.thonny
@@ -60,9 +57,6 @@
           ];
           brews = [
             "mas"
-            #"mongodb-community@6.0"
-            #"mongodb-database-tools"
-            #"mongosh"
           ];
           casks = [
             "brave-browser"
@@ -126,9 +120,6 @@
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
 
-      # Enable alternative shell support in nix-darwin.
-      # programs.fish.enable = true;
-
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
 
@@ -136,7 +127,7 @@
       # $ darwin-rebuild changelog
       system.stateVersion = 5;
 
-      # allow fingerprint in terminal
+      # allow touchID in terminal
       security.pam.enableSudoTouchIdAuth = true;
 
       # The platform the configuration will be used on.
@@ -168,10 +159,6 @@
         };
       };
 
- #     programs.zsh.enable = true;
-  #    programs.zsh.initExtra = ''
-   #           alias la="ls -la --color=auto"
-    #  '';
     };
       in
       {
@@ -203,6 +190,3 @@
     darwinPackages = self.darwinConfigurations."MBAM2".pkgs;
   };
 }
-
-# Notes, not so important
-# Install Rosetta manually
