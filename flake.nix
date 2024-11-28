@@ -12,7 +12,6 @@
     };
   };
 
-
   outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager }:
   let
     configuration = { pkgs, config, ... }: {
@@ -27,13 +26,14 @@
           pkgs.cmatrix
           pkgs.docker
           pkgs.fossil
+          pkgs.fzf
           pkgs.git
           pkgs.gnupg
           pkgs.google-chrome
           pkgs.htop
+          pkgs.logisim-evolution
      #     pkgs.nodejs_20
           pkgs.mkalias
-#          pkgs.mongodb-6_0
 #          pkgs.mongosh
           pkgs.neofetch
           pkgs.obsidian
@@ -56,7 +56,7 @@
         homebrew = {
           enable = true;
           taps = [
-            "mongodb/brew"
+#            "mongodb/brew"
           ];
           brews = [
             "mas"
@@ -76,6 +76,10 @@
             Utm = 1538878817;
           };
         };
+
+        system.activationScripts.enableRosetta = ''
+          /usr/sbin/softwareupdate --install-rosetta --agree-to-license
+        '';
 
         system.activationScripts.applications.text = let
           env = pkgs.buildEnv {
@@ -138,6 +142,7 @@
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
     };
+
     homeconfig = {pkgs, ...}: {
       # this is internal compatibility configuration 
       # for home-manager, don't change this!
@@ -162,6 +167,11 @@
           ci = "commit";
         };
       };
+
+ #     programs.zsh.enable = true;
+  #    programs.zsh.initExtra = ''
+   #           alias la="ls -la --color=auto"
+    #  '';
     };
       in
       {
