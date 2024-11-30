@@ -33,6 +33,7 @@
           pkgs.htop
           pkgs.logisim-evolution
           pkgs.mkalias
+          pkgs.nushell
           pkgs.neofetch
           pkgs.obsidian
           pkgs.postman
