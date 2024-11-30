@@ -17,6 +17,7 @@ brew install \
     mas \
     mongosh \
     neofetch \
+    nvm \
     nushell \
     ripgrep \
     tmux \
