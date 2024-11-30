@@ -6,6 +6,7 @@ brew update && brew upgrade
 # Install applications and tools via Homebrew
 brew install \
     alacritty \
+    bash \
     cmatrix \
     docker \
     fossil \
@@ -13,13 +14,16 @@ brew install \
     git \
     gnupg \
     htop \
-    mkalias \
+    mas \
+    mongosh \
     neofetch \
+    nushell \
     ripgrep \
     tmux \
     tree \
     watchman \
-    wget
+    wget \
+    yazi
 
 # Install additional tools from taps
 brew tap mongodb/brew
@@ -27,17 +31,18 @@ brew install mongodb-community@5.0
 
 # Install cask applications
 brew install --cask \
-    google-chrome \
     brave-browser \
+    google-chrome \
+    logisim-evolution \
     microsoft-office \
     microsoft-teams
-    logisim-evolution \
     obsidian \
     postman \
+    raycast \
+    the-unarchiver \
     thonny \
     vlc \
-    zoom \
-    the-unarchiver
+    zoom
 
 # Post-install message
 echo "Installation complete. Review output for any issues."

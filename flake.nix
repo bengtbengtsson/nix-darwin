@@ -23,16 +23,20 @@
       environment.systemPackages =
         [ 
           pkgs.alacritty
+          pkgs.bash
           pkgs.cmatrix
           pkgs.docker
           pkgs.fossil
           pkgs.fzf
+          pkgs.gh
           pkgs.git
           pkgs.gnupg
+          pkgs.go
           pkgs.google-chrome
           pkgs.htop
           pkgs.logisim-evolution
           pkgs.mkalias
+          pkgs.nodejs_20
           pkgs.nushell
           pkgs.neofetch
           pkgs.obsidian
