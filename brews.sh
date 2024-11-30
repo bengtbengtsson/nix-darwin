@@ -35,7 +35,7 @@ brew install --cask \
     google-chrome \
     logisim-evolution \
     microsoft-office \
-    microsoft-teams
+    microsoft-teams \
     obsidian \
     postman \
     raycast \
