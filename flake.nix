@@ -37,6 +37,7 @@
           pkgs.neofetch
           pkgs.obsidian
           pkgs.postman
+          pkgs.raycast
           pkgs.ripgrep
           pkgs.teams
           pkgs.thonny
@@ -44,6 +45,7 @@
           pkgs.tree
           pkgs.watchman
           pkgs.wget
+          pkgs.yazi
           pkgs.zoom-us
         ];
 
