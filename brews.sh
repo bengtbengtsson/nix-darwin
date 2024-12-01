@@ -13,6 +13,7 @@ brew install \
     fzf \
     git \
     gnupg \
+    go \
     htop \
     mas \
     mongosh \
