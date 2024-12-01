@@ -2,6 +2,16 @@
 
 set -e
 
+# Ensure the script is executed in the ~/nix-darwin directory
+TARGET_DIR="$HOME/nix-darwin"
+if [ "$(pwd)" != "$TARGET_DIR" ]; then
+    echo "Error: This script must be run from the directory $TARGET_DIR."
+    echo "Current directory: $(pwd)"
+    exit 1
+fi
+
+echo "Confirmed: Running script in $TARGET_DIR..."
+
 #
 # Check if Homebrew is installed
 #
@@ -173,6 +183,7 @@ git config --global alias.st status
 
 git config --global --list
 
+git remote set-url origin git@github.com:bengtbengtsson/nix-darwin.git
 
 #
 # configue dock
